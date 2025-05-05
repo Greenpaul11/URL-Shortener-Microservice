@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const urlShortener = require('./urlShortener')
 const app = express();
 
 // Basic Configuration
@@ -18,6 +19,8 @@ app.get('/', function(req, res) {
 app.get('/api/hello', function(req, res) {
   res.json({ greeting: 'hello API' });
 });
+
+app.use('/api', urlShortener)
 
 app.listen(port, function() {
   console.log(`Listening on port ${port}`);
